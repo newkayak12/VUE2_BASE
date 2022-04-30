@@ -3,8 +3,22 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
-Vue.config.productionTip = false
+//import Services
+import User from '@/common/service/UserSvc'
 
+//prototype
+Vue.prototype.$User = User
+
+//Library
+import moment from 'moment'
+import vuelidate from 'vuelidate'
+import VueObserveVisibility from 'vue-observe-visibility'
+//Use
+Vue.use(moment)
+Vue.use(vuelidate)
+Vue.use(VueObserveVisibility)
+
+Vue.config.productionTip = false
 new Vue({
   router,
   store,
