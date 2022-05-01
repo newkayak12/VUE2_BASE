@@ -4,10 +4,14 @@ module.exports = {
 
         port:9001,
         proxy:{
-            // '/api':{
-            //     target:'',
-            //     changeOrigin:true
-            // },
+            '/api':{
+                target:'http://newkayak.iptime.org:1247/',
+                changeOrigin:true
+            },
+            '/admin':{
+                target:'http://newkayak.iptime.org:1247/',
+                changeOrigin:true
+            }
         }
     }
 }

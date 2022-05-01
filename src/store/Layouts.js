@@ -1,7 +1,12 @@
+import spinner from "@/layouts/spinner/Spinner";
+
 export default({
-    namespace:true,
+    namespaced:true,
     state:{
-        spinner:false,
+        spinner: {
+          isActive:false,
+          spinnerColor:'#000'
+        },
         modal:{
             isPopUp:false, //대부분을 커버할 모달
             isAlert:false, //확인만 있는
@@ -16,6 +21,7 @@ export default({
             modalContent:{
                 data:{},//들어갈 데이터
                 alertCallBack:()=>{},
+
                 confirmPositiveCallBack:()=>{},
                 confirmNegativeCallBack:()=>{}
             },
@@ -115,15 +121,17 @@ export default({
                 },
             }
         },
-        startSpinner(state){
-            state.spinner=true
+        startSpinner(state, {isActive= false, spinnerColor='#000'}){
+            state.spinner.isActive = isActive
+            console.log(spinnerColor)
+            state.spinner.spinnerColor =spinnerColor
         },
         endSpinner(state){
-            state.spinner=false
+            state.spinner.isActive = false
         }
     },
     actions:{
-        setAlertModal({isAlert=true,
+        setAlertModal({commit},{isAlert=true,
                         isHeader=false,
                         isFooter = false,
                         isClose =false,
@@ -133,7 +141,7 @@ export default({
                                 data : {},
                                 alertCallBack:()=>{}
                             }} ){
-            this.commit('setAlertModal',{
+            commit('setAlertModal',{
                 isAlert:isAlert,
                 isHeader:isHeader,
                 isFooter:isFooter,
@@ -146,7 +154,7 @@ export default({
                 }
             })
         },
-        setConfirmModal({isConfirm=true,
+        setConfirmModal({commit},{isConfirm=true,
                         isHeader=false,
                         isFooter=false,
                         isFull =false,
@@ -159,7 +167,7 @@ export default({
                             confirmPositiveCallBack:()=>{},
                             confirmNegativeCallBack:()=>{}
                         }}){
-            this.commit('setConfirmModal',{
+            commit('setConfirmModal',{
                 isConfirm:isConfirm,
                 isHeader:isHeader,
                 isFooter:isFooter,
@@ -175,7 +183,7 @@ export default({
                 }
             })
         },
-        setPopupModal({ isPopup = true,
+        setPopupModal({commit},{ isPopup = true,
                         isHeader = false,
                         isFooter = false,
                         isFull = false,
@@ -187,7 +195,7 @@ export default({
                 data: {}
             }
         }) {
-            this.commit('setPopupModal',{
+            commit('setPopupModal',{
                 isPopup:isPopup,
                 isHeader:isHeader,
                 isFooter : isFooter,
@@ -201,14 +209,15 @@ export default({
                 }
             })
         },
-        closeModal(){
-            this.commit('closeModal')
+        closeModal({commit}){
+            commit('closeModal')
         },
-        startSpinner(){
-            this.commit('startSpinner')
+        startSpinner({commit},{spinnerColor = '#000'}){
+            console.log('dispatch', spinnerColor)
+            commit('startSpinner',{isActive : true, spinnerColor : spinnerColor} )
         },
-        endSpinner(){
-            this.commit('endSpinner')
+        endSpinner({commit}){
+            commit('endSpinner')
         }
     },
     getters:{

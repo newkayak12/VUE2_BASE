@@ -1,19 +1,34 @@
 <template>
   <div id="app">
-    <transition>
-      <ModalState />
+    <transition name="spinner">
+      <Spinner />
     </transition>
+      <ModalState />
   </div>
 </template>
 
 <script>
 import ModalState from "@/layouts/modal/ModalState";
+import Spinner from "@/layouts/spinner/Spinner"
 export default{
   components:{
-    ModalState
-  }
+    ModalState,
+    Spinner
+  },
 }
 </script>
 
 <style lang="scss">
+#app{
+  position: relative;
+}
+.spinner {
+  opacity: 1;
+}
+.spinner-enter-active, .spinner-leave-active  {
+  transition: opacity 1s;
+}
+.spinner-enter, .spinner-leave-to {
+  opacity: 0;
+}
 </style>
