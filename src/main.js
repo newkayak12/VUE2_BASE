@@ -16,6 +16,7 @@ Vue.prototype.$User = User
 import moment from 'moment'
 import vuelidate from 'vuelidate'
 import VueObserveVisibility from 'vue-observe-visibility'
+
 //Use
 Vue.use(moment)
 Vue.use(vuelidate)
