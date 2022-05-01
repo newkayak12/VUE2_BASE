@@ -7,10 +7,12 @@ import '@/assets/css/reset.css'
 import '@/assets/css/main.scss'
 
 //import Services
-import User from '@/common/service/UserSvc'
+import ModalState from "@/common/service/ModalState";
+import UserSvc from '@/common/service/UserSvc'
 
 //prototype
-Vue.prototype.$User = User
+Vue.prototype.$UserSvc = UserSvc
+Vue.prototype.$ModalState = new ModalState(store)
 
 //Library
 import moment from 'moment'
