@@ -4,18 +4,19 @@ class ModalState{
     }
     //closeModal
     closeModal(){
-        this.$store.dispatch('closeModal')
+        this.$store.dispatch('layout/closeModal')
     }
     //alert
-    alert(_modalName ={}, _modalTitle ='', _data = {},_isFooter=false, _callBack = ()=>{}, _isClose=false ){
+    alert(_modalTitle ='', _contents = '',_isFooter=false, _callBack = ()=>{}, _isClose=false ){
         const isAlert = true
-        const isHeader = modalTitle&&modalTitle!==""? true:false
+        const isHeader = _modalTitle&&_modalTitle!==""? true:false
         const isFooter = _isFooter
         const isClose = _isClose
-        const modalName = _modalName
         const modalTitle = _modalTitle
         const modalContent={
-            data:_data,
+            data:{
+                contents:_contents
+            },
             alertCallBack : _callBack,
         }
         const payload = {
@@ -23,22 +24,20 @@ class ModalState{
             isHeader:isHeader,
             isFooter:isFooter,
             isClose:isClose,
-            modalName:modalName,
             modalTitle:modalTitle,
             modalContent:modalContent
         }
-        this.$store.dispatch('setAlertModal', payload)
+        this.$store.dispatch('layout/setAlertModal', payload)
     }
 
     //confirm
-    confirm(_modalName ={}, _modalTitle ='', _data = {},_isFooter=false, _positiveCallBack = ()=>{}, _negativeCallBack = ()=>{}, _isClose=false, _isBack=false) {
+    confirm( _modalTitle ='', _data = {},_isFooter=false, _positiveCallBack = ()=>{}, _negativeCallBack = ()=>{}, _isClose=false, _isFull=false) {
         const isConfirm = true
         const isHeader = modalTitle&&modalTitle!==""? true:false
         const isFooter = _isFooter
-        const modalName = _modalName
+        const isFull = _isFull
         const modalTitle = _modalTitle
         const isClose = _isClose
-        const isBack = _isBack
         const modalContent = {
             data:_data,
             confirmPositiveCallBack:_positiveCallBack(),
@@ -48,16 +47,15 @@ class ModalState{
             isConfirm:isConfirm,
             isHeader:isHeader,
             isFooter:isFooter,
+            isFull:isFull,
             isClose:isClose,
-            isBack:isBack,
-            modalName:modalName,
             modalTitle:modalTitle,
             modalContent:modalContent
         }
-        this.$store.dispatch('setConfirmModal', payload)
+        this.$store.dispatch('layout/setConfirmModal', payload)
     }
     //popup
-    halfPopup(_modalName ={}, _modalTitle ='', _data = {},_isFooter=false, _isClose=false, _isBack=false){
+    defaultPopup(_modalName ={}, _modalTitle ='', _data = {},_isFooter=false, _isClose=false, _isBack=false){
         const isPopup = true
         const isHeader = modalTitle&&modalTitle!==""? true:false
         const isFull = false
@@ -78,7 +76,7 @@ class ModalState{
             modalTitle:modalTitle,
             modalContent:modalContent
         }
-        this.$store.dispatch('setPopupModel', payload)
+        this.$store.dispatch('layout/setPopupModel', payload)
     }
     fullPopup(_modalName ={}, _modalTitle ='', _data = {},_isFooter=false, _isClose=false, _isBack=false) {
         const isPopup = true
@@ -101,7 +99,7 @@ class ModalState{
             modalTitle:modalTitle,
             modalContent:modalContent
         }
-        this.$store.dispatch('setPopupModel', payload)
+        this.$store.dispatch('layout/setPopupModel', payload)
     }
 }
 export default ModalState

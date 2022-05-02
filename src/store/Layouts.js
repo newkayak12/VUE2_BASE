@@ -30,9 +30,8 @@ export default({
     mutations:{
         setAlertModal(state,{isAlert=true,
                             isHeader=false,
-                            isClose=false,
                             isFooter = false,
-                            modalName='',
+                            isClose=false,
                             modalTitle ='',
                             modalContent ={
                                 data : {},
@@ -44,7 +43,6 @@ export default({
             state.modal.isHeader = isHeader
             state.modal.isFooter = isFooter
             state.modal.isClose = isClose
-            state.modal.modalName = modalName
             state.modal.modalTitle = modalTitle
             state.modal.modalContent.data = modalContent.data
             state.modal.modalContent.alertCallBack = modalContent.alertCallBack
@@ -54,9 +52,7 @@ export default({
                                 isHeader=false,
                                 isFooter=false,
                                 isFull =false,
-                                isBack =false,
                                 isClose = false,
-                                modalName='',
                                 modalTitle ='',
                                 modalContent ={
                                     data : {},
@@ -70,8 +66,6 @@ export default({
             state.modal.isFooter=isFooter
             state.modal.isFull = isFull
             state.modal.isClose = isClose
-            state.modal.isBack = isBack
-            state.modal.modalName = modalName
             state.modal.modalTitle = modalTitle
             state.modal.modalContent.data = modalContent.data
             state.modal.modalContent.confirmPositiveCallBack = modalContent.confirmPositiveCallBack
@@ -132,21 +126,19 @@ export default({
     },
     actions:{
         setAlertModal({commit},{isAlert=true,
-                        isHeader=false,
-                        isFooter = false,
-                        isClose =false,
-                        modalName='',
-                        modalTitle ='',
-                        modalContent ={
-                                data : {},
-                                alertCallBack:()=>{}
-                            }} ){
+                                isHeader=false,
+                                isFooter = false,
+                                isClose =false,
+                                modalTitle ='',
+                                modalContent ={
+                                        data : {},
+                                        alertCallBack:()=>{}
+                                    }} ){
             commit('setAlertModal',{
                 isAlert:isAlert,
                 isHeader:isHeader,
                 isFooter:isFooter,
                 isClose:isClose,
-                modalName:modalName,
                 modalTitle:modalTitle,
                 modalContent:{
                     data:modalContent.data,
@@ -158,9 +150,7 @@ export default({
                         isHeader=false,
                         isFooter=false,
                         isFull =false,
-                        isBack =false,
                         isClose = false,
-                        modalName='',
                         modalTitle ='',
                         modalContent ={
                             data : {},
@@ -172,9 +162,7 @@ export default({
                 isHeader:isHeader,
                 isFooter:isFooter,
                 isFull:isFull,
-                isBack:isBack,
                 isClose:isClose,
-                modalName:modalName,
                 modalTitle:modalTitle,
                 modalContent:{
                     data: modalContent.data,

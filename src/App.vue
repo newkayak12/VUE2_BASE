@@ -3,7 +3,11 @@
     <transition name="spinner">
       <Spinner />
     </transition>
+    <transition>
       <ModalState />
+    </transition>
+
+    <button @click="test">modal</button>
   </div>
 </template>
 
@@ -15,6 +19,11 @@ export default{
     ModalState,
     Spinner
   },
+  methods:{
+    test(){
+      this.$ModalState.alert("[공지]", '예진이는 귀엾스빈다. 고로 괴롭혀야합니다.', true, null, true )
+    }
+  }
 }
 </script>
 
