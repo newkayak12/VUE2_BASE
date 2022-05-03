@@ -8,7 +8,7 @@
       {{modalState.modalContent.data.contents}}
     </div>
     <div class="modal-footer" v-if="modalState.isFooter">
-       <button @click="fnCallBackClose">확인</button>
+       <button @click="fnCallBackClose">{{ modalState.modalContent.data.closeLetter }}</button>
     </div>
   </div>
 </template>

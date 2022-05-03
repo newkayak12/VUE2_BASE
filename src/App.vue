@@ -21,7 +21,15 @@ export default{
   },
   methods:{
     test(){
-      this.$ModalState.alert("[공지]", '예진이는 귀엾스빈다. 고로 괴롭혀야합니다.', true, null, true )
+      // this.$ModalState.alert("[공지]", '예진이는 귀엾스빈다. 고로 괴롭혀야합니다.', true, null, true )
+      this.$ModalState.confirm("[공지]", '예진이는 귀엾스빈다. 고로 괴롭혀야합니다.', true, true, false, "안녕", "하세요",
+          this.po, this.ne  )
+    },
+    po(){
+      alert("1")
+    },
+    ne(){
+      alert('2')
     }
   }
 }
