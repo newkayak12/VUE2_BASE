@@ -1,14 +1,11 @@
-//alertList
-
-//confirmList
-
 //popupList
-
+import Vue from 'vue'
+import Test from '@/components/modal/popupContainer/Test'
 const ModalList = () => {
     return {
-        ALERT:{},
-        CONFIRM:{},
-        POPUP:{}
+        TEST:Test.name
     }
 }
+
+Vue.component(Test.name,Test)
 export default ModalList()

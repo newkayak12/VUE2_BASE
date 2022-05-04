@@ -1,7 +1,7 @@
 <template>
-  <div v-if="modalState.isPopup||modalState.isConfirm||modalState.isAlert" class="dimmer">
+  <div v-if="modalState.isPopUp||modalState.isConfirm||modalState.isAlert" class="dimmer">
     <Popup
-        v-if="modalState.isPopup"
+        v-if="modalState.isPopUp"
         :modalState="modalState"
     />
     <Confirm
@@ -37,6 +37,9 @@ export default {
 <style scoped>
 .dimmer {
   position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100vh;
   background: rgba(0, 0, 0, 0.2);

@@ -3,41 +3,39 @@
     <transition name="spinner">
       <Spinner />
     </transition>
-    <transition>
+    <transition name="modal">
       <ModalState />
     </transition>
-
-    <button @click="test">modal</button>
+    <div class="contentsLayout">
+      <HeaderLayout/>
+      <ContentsLayout/>
+      <FooterLayout/>
+    </div>
   </div>
 </template>
 
 <script>
 import ModalState from "@/layouts/modal/ModalState";
 import Spinner from "@/layouts/spinner/Spinner"
+import HeaderLayout from "@/layouts/design/HeaderLayout"
+import ContentsLayout from "@/layouts/design/ContentsLayout"
+import FooterLayout from "@/layouts/design/FooterLayout"
 export default{
   components:{
     ModalState,
-    Spinner
+    Spinner,
+    HeaderLayout,
+    ContentsLayout,
+    FooterLayout
   },
-  methods:{
-    test(){
-      // this.$ModalState.alert("[공지]", '예진이는 귀엾스빈다. 고로 괴롭혀야합니다.', true, null, true )
-      this.$ModalState.confirm("[공지]", '예진이는 귀엾스빈다. 고로 괴롭혀야합니다.', true, true, false, "안녕", "하세요",
-          this.po, this.ne  )
-    },
-    po(){
-      alert("1")
-    },
-    ne(){
-      alert('2')
-    }
-  }
 }
 </script>
 
 <style lang="scss">
 #app{
   position: relative;
+}
+.contentsLayout{
 }
 .spinner {
   opacity: 1;
@@ -47,5 +45,15 @@ export default{
 }
 .spinner-enter, .spinner-leave-to {
   opacity: 0;
+}
+
+.modal-enter-active, .modal-leave-active  {
+  transition: all 0.5s ease-out;
+}
+.modal-enter-to, .modal-leave-to {
+  transform:translateY(0px);
+}
+.modal-enter, .modal-leave {
+  transform:translateY(400px);
 }
 </style>

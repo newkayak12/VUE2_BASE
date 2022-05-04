@@ -16,6 +16,12 @@
 <script>
 export default {
   name: "Modal-Component-Alert",
+  beforeMount() {
+    document.body.style.overflow='hidden'
+  },
+  beforeDestroy() {
+    document.body.style.overflow=''
+  },
   props:{
     modalState:{
       type:Object,
@@ -60,6 +66,7 @@ export default {
   height: 50px;
   padding: 1rem;
   border-radius: 10px 10px 0 0;
+  border-bottom: 2px solid rgba(238, 238, 238, 0.74);
 }
 .modal-title{
   text-align: center;

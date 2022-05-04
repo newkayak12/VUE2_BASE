@@ -2,7 +2,7 @@
   <div :class="confirm">
     <div class="modal-header" v-if="modalState.isHeader">
       <h1 class="modal-title">{{modalState.modalTitle}}</h1>
-      <img :src="xBtn" alt="" class="modal-close-btn" @click="fnClose">
+      <img :src="xBtn" alt="" class="modal-close-btn" @click="fnClose" v-if="modalState.isClose">
     </div>
     <div :class="bodyClass">
       {{modalState.modalContent.data.contents}}
@@ -17,6 +17,12 @@
 <script>
 export default {
   name: "Modal-Component-Confirm",
+  beforeMount() {
+    document.body.style.overflow='hidden'
+  },
+  beforeDestroy() {
+    document.body.style.overflow=''
+  },
   props:{
     modalState:{
       type:Object,
@@ -25,13 +31,14 @@ export default {
   },
   data(){
     return {
-      xBtn:require('@/assets/static/necessaries/x-symbol-svgrepo-com.svg')
+      xBtn:require('@/assets/static/necessaries/x-symbol-svgrepo-com.svg'),
+      backBtn:require('@/assets/static/necessaries/back-svgrepo-com.svg')
     }
   },
   computed:{
     confirm(){
       if(this.modalState.isFull){
-        return 'confirmFUll'
+        return 'confirmFull'
       }
       return 'confirm'
     },
@@ -105,9 +112,17 @@ export default {
   height: 50px;
   padding: 1rem;
   border-radius: 10px 10px 0 0;
+  border-bottom: 2px solid rgba(238, 238, 238, 0.74);
 }
 .modal-title{
   text-align: center;
+}
+.modal-back-btn{
+  position: fixed;
+  top:13px;
+  left:1.2rem;
+  width: 1rem;
+  height: 1rem;
 }
 .modal-close-btn{
   position: fixed;

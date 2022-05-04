@@ -25,9 +25,33 @@ export default({
                 confirmPositiveCallBack:()=>{},
                 confirmNegativeCallBack:()=>{}
             },
+        },
+        headerLayout:{
+            title:'',
+            isLogo:false,
+            isBack:false,
+            isHome:false
         }
     },
     mutations:{
+        setTitle(state,{_title}){
+            state.headerLayout.title = _title
+        },
+        setIsLogo(state,{_isLogo}){
+            state.headerLayout.isLogo = _isLogo
+        },
+        setIsBack(state,{_isBack}){
+            state.headerLayout.isBack = _isBack
+        },
+        setIsHome(state,{_isHome}){
+            state.headerLayout.isHome=_isHome
+        },
+        setHeader(state, {title, isLogo, isBack, isHome}){
+            state.headerLayout.title = title
+            state.headerLayout.isLogo = isLogo
+            state.headerLayout.isBack = isBack
+            state.headerLayout.isHome=isHome
+        },
         setAlertModal(state,{isAlert=true,
                             isHeader=false,
                             isFooter = false,
@@ -46,7 +70,6 @@ export default({
             state.modal.modalTitle = modalTitle
             state.modal.modalContent.data = modalContent.data
             state.modal.modalContent.alertCallBack = modalContent.alertCallBack
-
         },
         setConfirmModal(state,{isConfirm=true,
                                 isHeader=false,
@@ -83,7 +106,7 @@ export default({
                                     data:{}
                                 }
         }) {
-            state.modal.isPopup = isPopup
+            state.modal.isPopUp = isPopup
             state.modal.isConfirm = false
             state.modal.isAlert = false
             state.modal.isHeader = isHeader
@@ -94,6 +117,7 @@ export default({
             state.modal.modalName = modalName
             state.modal.modalTitle = modalTitle
             state.modal.modalContent.data = modalContent.data
+            console.log("123")
         },
         closeModal(state){
             state.modal={
@@ -125,6 +149,22 @@ export default({
         }
     },
     actions:{
+        setTitle({commit},{_title=''}){
+            commit('setTitle',{_title})
+        },
+        setIsLogo({commit},{_isLogo=false}){
+            commit('setIsLogo',{_isLogo})
+        },
+        setIsBack({commit},{_isBack=false}){
+            commit('setIsBack',{_isBack})
+        },
+        setIsHome({commit},{_isHome=false}){
+            commit('setIsHome',{_isHome})
+        },
+        setHeader({commit}, {title, isLogo, isBack, isHome}){
+
+            commit('setHeader', {title:title, isLogo:isLogo,isBack:isBack,isHome:isHome})
+        },
         setAlertModal({commit},{isAlert=true,
                                 isHeader=false,
                                 isFooter = false,
@@ -179,10 +219,9 @@ export default({
                         isClose = false,
                         modalName = '',
                         modalTitle = '',
-                        modalContent = {
-                data: {}
-            }
+                        modalContent = { data: {} }
         }) {
+
             commit('setPopupModal',{
                 isPopup:isPopup,
                 isHeader:isHeader,
@@ -214,7 +253,8 @@ export default({
         },
         getSpinner(state){
             return state.spinner
-        }
+        },
+        getHeader(state){return state.headerLayout}
 
     }
 })
