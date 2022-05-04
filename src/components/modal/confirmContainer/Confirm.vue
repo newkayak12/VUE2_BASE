@@ -4,7 +4,7 @@
       <h1 class="modal-title">{{modalState.modalTitle}}</h1>
       <img :src="xBtn" alt="" class="modal-close-btn" @click="fnClose">
     </div>
-    <div class="modal-body">
+    <div :class="bodyClass">
       {{modalState.modalContent.data.contents}}
     </div>
     <div class="modal-footer" v-if="modalState.isFooter">
@@ -31,13 +31,27 @@ export default {
   computed:{
     confirm(){
       if(this.modalState.isFull){
-        return 'confirmFull'
+        return 'confirmFUll'
       }
       return 'confirm'
     },
-    isHeader(){
+    bodyClass(){
+      let result = ''
 
-    }
+      if(this.modalState.isFull){
+        result+=' full-modal-body'
+      }else{
+        result += ' modal-body'
+      }
+
+      if(!this.modalState.isHeader){
+        result+= ' round-body'
+      } else {
+        result +=" "
+      }
+      return result
+    },
+
   },
   methods:{
     fnClose(){
@@ -62,12 +76,28 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 90%;
+  width: 90vw;
   max-height: 60vh;
   min-height: 20vh;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   background: #fff;
+}
+.confirmFull {
+  position: absolute;
+  z-index: 1;
+  top: 0%;
+  left: 0%;
+  height: 100%;
+  width: 100%;
+  /*max-height: 60vh;*/
+  /*min-height: 20vh;*/
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background: #fff;
+}
+.round-body{
+  border-radius: 10px 10px 0 0;
 }
 .modal-header{
   background-color: white;
@@ -91,6 +121,13 @@ export default {
   padding: 30px;
   max-height: calc(60vh - 100px);
   min-height: 20vh;
+  overflow-y: scroll;
+  background: white;
+}
+.full-modal-body{
+  width: 100%;
+  padding: 30px;
+  height: calc(100vh - 100px);
   overflow-y: scroll;
   background: white;
 }
