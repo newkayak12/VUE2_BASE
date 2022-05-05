@@ -1,17 +1,23 @@
 <template>
   <div v-if="modalState.isPopUp||modalState.isConfirm||modalState.isAlert" class="dimmer">
-    <Popup
-        v-if="modalState.isPopUp"
-        :modalState="modalState"
-    />
-    <Confirm
-        v-if="modalState.isConfirm"
-        :modalState="modalState"
-    />
-    <Alert
-        v-if="modalState.isAlert"
-        :modalState="modalState"
-    />
+    <transition name="popup">
+      <Popup
+          v-if="modalState.isPopUp"
+          :modalState="modalState"
+      />
+    </transition>
+    <transition name="confirm">
+      <Confirm
+          v-if="modalState.isConfirm"
+          :modalState="modalState"
+      />
+    </transition>
+    <transition name="alert">
+      <Alert
+          v-if="modalState.isAlert"
+          :modalState="modalState"
+      />
+    </transition>
   </div>
 </template>
 
@@ -34,15 +40,17 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
+
 .dimmer {
   position: fixed;
-  z-index: 2;
+  z-index:2;
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
   background: rgba(0, 0, 0, 0.2);
 }
+
 
 </style>

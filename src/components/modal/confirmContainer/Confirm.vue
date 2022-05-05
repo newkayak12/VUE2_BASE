@@ -8,8 +8,8 @@
       {{modalState.modalContent.data.contents}}
     </div>
     <div class="modal-footer" v-if="modalState.isFooter">
-      <button @click="fnPositiveCallBackClose">{{ modalState.modalContent.data.positiveCloseLetter }}</button>
-      <button @click="fnNegativeCallBackClose">{{ modalState.modalContent.data.negativeCloseLetter }}</button>
+      <button @click="fnNegativeCallBackClose" :style="`background:${negativeBtn}`">{{ modalState.modalContent.data.negativeCloseLetter }}</button>
+      <button @click="fnPositiveCallBackClose" :style="`background:${positiveBtn}`">{{ modalState.modalContent.data.positiveCloseLetter }}</button>
     </div>
   </div>
 </template>
@@ -19,6 +19,8 @@ export default {
   name: "Modal-Component-Confirm",
   beforeMount() {
     document.body.style.overflow='hidden'
+    this.positiveBtn = this.$Constants.MAIN_THEME_COLOR.FIRST
+    this.negativeBtn = this.$Constants.MAIN_THEME_COLOR.SECOND
   },
   beforeDestroy() {
     document.body.style.overflow=''
@@ -31,8 +33,10 @@ export default {
   },
   data(){
     return {
-      xBtn:require('@/assets/static/necessaries/x-symbol-svgrepo-com.svg'),
-      backBtn:require('@/assets/static/necessaries/back-svgrepo-com.svg')
+      xBtn:require('@/assets/static/necessaries/close-svgrepo-com.svg'),
+      backBtn:require('@/assets/static/necessaries/back-svgrepo-com.svg'),
+      positiveBtn:'',
+      negativeBtn:''
     }
   },
   computed:{
@@ -65,11 +69,15 @@ export default {
       this.$ModalState.closeModal()
     },
     fnPositiveCallBackClose(){
-      this.modalState.modalContent.confirmPositiveCallBack()
+      if(this.modalState.modalContent.confirmPositiveCallBack){
+        this.modalState.modalContent.confirmPositiveCallBack()
+      }
       this.$ModalState.closeModal()
     },
     fnNegativeCallBackClose(){
-      this.modalState.modalContent.confirmNegativeCallBack()
+      if(this.modalState.modalContent.confirmNegativeCallBack){
+        this.modalState.modalContent.confirmNegativeCallBack()
+      }
       this.$ModalState.closeModal()
     }
   }
@@ -163,7 +171,6 @@ export default {
   padding: 5px 20px;
   width: 100%;
   height: 50px;
-  background: blue;
   color: #fff;
 }
 .modal-footer button:nth-child(2) {
@@ -175,11 +182,7 @@ export default {
   padding: 5px 20px;
   width: 100%;
   height: 50px;
-  background: blue;
   color: #fff;
-}
-.modal-footer button:hover {
-  background: royalblue;
 }
 
 </style>

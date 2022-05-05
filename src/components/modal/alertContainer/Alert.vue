@@ -8,7 +8,7 @@
       {{modalState.modalContent.data.contents}}
     </div>
     <div class="modal-footer" v-if="modalState.isFooter">
-       <button @click="fnCallBackClose">{{ modalState.modalContent.data.closeLetter }}</button>
+       <button @click="fnCallBackClose" :style="`background:${btnColor}`" >{{ modalState.modalContent.data.closeLetter }}</button>
     </div>
   </div>
 </template>
@@ -17,6 +17,7 @@
 export default {
   name: "Modal-Component-Alert",
   beforeMount() {
+    this.btnColor = this.$Constants.MAIN_THEME_COLOR.FIRST
     document.body.style.overflow='hidden'
   },
   beforeDestroy() {
@@ -30,7 +31,8 @@ export default {
   },
   data(){
     return {
-      xBtn:require('@/assets/static/necessaries/x-symbol-svgrepo-com.svg')
+      btnColor:'',
+      xBtn:require('@/assets/static/necessaries/close-svgrepo-com.svg'),
     }
   },
   methods:{
@@ -38,7 +40,9 @@ export default {
       this.$ModalState.closeModal()
     },
     fnCallBackClose(){
-      this.modalState.modalContent.alertCallBack()
+      if(this.modalState.modalContent.alertCallBack){
+        this.modalState.modalContent.alertCallBack()
+      }
       this.$ModalState.closeModal()
     }
   }
@@ -102,10 +106,6 @@ export default {
   padding: 5px 20px;
   width: 100%;
   height: 50px;
-  background: blue;
   color: #fff;
-}
-.modal-footer button:hover {
-  background: royalblue;
 }
 </style>

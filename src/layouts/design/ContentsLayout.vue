@@ -14,7 +14,7 @@ export default {
   .contentsLayout{
     width: 100vw;
     margin-top: 50px;
-    height: calc(100vh - 100px);
+    height: calc(100vh - 150px);
     padding:1rem;
     overflow-y: auto;
   }

@@ -18,7 +18,7 @@ export default {
   bottom: 0;
   left: 0;
   width: 100vw;
-  height: 50px;
+  height: 100px;
   padding:1rem;
   z-index: 1;
   background-color: white;

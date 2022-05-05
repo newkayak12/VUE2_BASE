@@ -47,13 +47,22 @@ export default{
   opacity: 0;
 }
 
+.modal {
+  opacity: 1;
+}
 .modal-enter-active, .modal-leave-active  {
-  transition: all 0.5s ease-out;
+  transition: opacity 0.4s;
 }
-.modal-enter-to, .modal-leave-to {
-  transform:translateY(0px);
+.modal-enter, .modal-leave-to {
+  opacity: 0;
 }
-.modal-enter, .modal-leave {
-  transform:translateY(400px);
-}
+//.modal-enter-active, .modal-leave-active  {
+//  transition: all 0.5s ease-out;
+//}
+//.modal-enter-to, .modal-leave-to {
+//  transform:translateY(0px);
+//}
+//.modal-enter, .modal-leave {
+//  transform:translateY(400px);
+//}
 </style>

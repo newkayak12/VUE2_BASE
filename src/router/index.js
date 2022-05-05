@@ -25,7 +25,7 @@ const routes = [
   {
     path: '/',
     component:Main,
-    meta:{title:'', isLogo:true, isBack:false, isHeader:false}
+    meta:{title:'HOME', isLogo:true, isBack:false, isHome:false}
 
   }
 ]
@@ -42,7 +42,7 @@ const router = new VueRouter({
   }),
 })
 router.beforeEach((to, from, next) =>{
-  spinner.activeSpinner('red')
+  spinner.activeSpinner(false)
   const header = to.meta
   headerControl.setHeader(header.title, header.isLogo, header.isBack, header.isHome)
 

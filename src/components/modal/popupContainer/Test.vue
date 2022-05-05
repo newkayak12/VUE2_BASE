@@ -1,6 +1,7 @@
 <template>
 <div>
   {{ modalContent }}
+
 </div>
 </template>
 
@@ -11,7 +12,8 @@ export default {
     modalContent:{
       type:Object
     }
-  }
+  },
+
 }
 </script>
 

@@ -29,7 +29,7 @@ export default {
   },
   data(){
     return {
-      xBtn:require('@/assets/static/necessaries/x-symbol-svgrepo-com.svg'),
+      xBtn:require('@/assets/static/necessaries/close-svgrepo-com.svg'),
       backBtn:require('@/assets/static/necessaries/back-svgrepo-com.svg')
     }
   },
