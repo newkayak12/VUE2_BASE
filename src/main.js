@@ -8,16 +8,18 @@ import '@/assets/css/reset.css'
 import '@/assets/css/main.scss'
 
 //import prototype
-import ModalState from "@/common/service/ModalState";
-import SpinnerState from "@/common/service/SpinnerState";
-import ModalList from "@/common/service/ModalList";
+import ModalState from "@/common/service/common/ModalState";
+import SpinnerState from "@/common/service/common/SpinnerState";
+import ModalList from "@/common/service/common/ModalList";
 import Constants from "@/common/constants/ConstantCode";
-import HeaderControl from "@/common/service/HeaderControl";
+import HeaderControl from "@/common/service/common/HeaderControl";
+import FooterControl from "@/common/service/common/FooterControl"
 
 //prototype
 Vue.prototype.$ModalState = new ModalState(store)
 Vue.prototype.$SpinnerState = new SpinnerState(store)
 Vue.prototype.$HeaderControl = new HeaderControl(store)
+Vue.prototype.$FooterControl =  FooterControl
 Vue.prototype.$ModalList =  ModalList
 Vue.prototype.$Constants = Constants
 

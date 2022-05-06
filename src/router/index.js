@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import spinnerState from "@/common/service/SpinnerState";
-import modalState from "@/common/service/ModalState";
-import HeaderControl from "@/common/service/HeaderControl";
+import spinnerState from "@/common/service/common/SpinnerState";
+import modalState from "@/common/service/common/ModalState";
+import HeaderControl from "@/common/service/common/HeaderControl";
 import store from "../store";;
 const spinner = new SpinnerState(store)
 const headerControl = new HeaderControl(store)
@@ -19,7 +19,7 @@ Vue.use(VueRouter)
 
 //page
 import Main from '@/views/main/index'
-import SpinnerState from "@/common/service/SpinnerState";
+import SpinnerState from "@/common/service/common/SpinnerState";
 
 const routes = [
   {

@@ -1,4 +1,4 @@
-import Service from "@/common/service/Service";
+import Service from "@/common/service/common/Service";
 class UserSvc extends Service {
 
 }
