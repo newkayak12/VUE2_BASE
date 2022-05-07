@@ -26,7 +26,6 @@ const routes = [
     path: '/',
     component:Main,
     meta:{title:'HOME', isLogo:true, isBack:false, isHome:false}
-
   }
 ]
 
@@ -47,7 +46,7 @@ router.beforeEach((to, from, next) =>{
   headerControl.setHeader(header.title, header.isLogo, header.isBack, header.isHome)
 
   next()
-  setTimeout(() => {spinner.deActiveSpinner()}, 1000)
+  setTimeout(() => {spinner.deActiveSpinner()}, 500)
 
 })
 export default router

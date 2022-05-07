@@ -7,11 +7,11 @@ class ModalState{
         this.$store.dispatch('layout/closeModal')
     }
     //alert
-    alert(_modalTitle ='', _contents = '',_isFooter=false, _isClose=false,
-          _closeLetter="확인", _callBack = ()=>{}, ){
+    alert(_modalTitle ='', _contents = '', _isClose=false,
+          _closeLetter="확인", _callBack = ()=>{}){
         const isAlert = true
         const isHeader = _modalTitle&&_modalTitle!==""? true:false || _isClose
-        const isFooter = _isFooter
+        const isFooter = _closeLetter&&_closeLetter!==""? true:false ||_closeLetter
         const isClose = _isClose
         const modalTitle = _modalTitle
         const modalContent={
@@ -33,12 +33,12 @@ class ModalState{
     }
 
     //confirm
-    confirm( _modalTitle ='', _contents = "",_isFooter=false, _isClose=false,
+    confirm( _modalTitle ='', _contents = "", _isClose=false,
              _isFull=false, _positiveCloseLetter="확인", _negativeCloseLetter="취소",
              _positiveCallBack = ()=>{}, _negativeCallBack = ()=>{}) {
         const isConfirm = true
         const isHeader = _modalTitle&&_modalTitle!==""? true:false || _isClose
-        const isFooter = _isFooter
+        const isFooter = _positiveCloseLetter&&_positiveCloseLetter!==""||_negativeCloseLetter&&_negativeCloseLetter!==""?true:false
         const isFull = _isFull
         const modalTitle = _modalTitle
         const isClose = _isClose
@@ -88,7 +88,7 @@ class ModalState{
         console.log("PAYLOAD", payload)
         this.$store.dispatch('layout/setPopupModal', payload)
     }
-    fullPopup(_modalName ={}, _modalTitle ='', _data = {},_isFooter=false,
+    fullPopup(_modalName ={}, _modalTitle ='', _data = {},
               _isClose=false, _isBack=false) {
         const isPopup = true
         const isHeader = _modalTitle && _modalTitle !== "" ? true : false || _isClose || _isBack
