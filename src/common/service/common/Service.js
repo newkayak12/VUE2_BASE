@@ -1,5 +1,7 @@
 import store from "@/store";
 import axios from "axios";
+import ConstantCode from "@/common/constants/ConstantCode";
+
 class Service{
     constructor(){
         this.$axios = axios.create({
@@ -10,10 +12,15 @@ class Service{
         })
         this.$axios.interceptors.request.use((config)=>{
             const auth = store.getters['user/getAuthorization']
-            config.headers.Authorization = auth
+            const refresh = store.getters['user/getRefreshToken']
+            config.headers['Authorization'] = auth
+            config.headers[ConstantCode.REFRESH_TOKEN_NAME]= refresh
             return config
         })
         this.$axios.interceptors.response.use((response)=>{
+            const auth = response.headers['Authorization']
+            const refresh = response.headers[ConstantCode.REFRESH_TOKEN_NAME]
+            store.dispatch('user/setAuthorization', {auth, refresh})
             return response
         }, (response)=>{
             return -1
@@ -69,17 +76,17 @@ class Service{
         })
     }
 
-    setToken(token="", userData={}){
-        store.commit('user/setAuthorization', {authorization:token})
-        store.commit('user/setUserData', {userData:userData})
-        localStorage.setItem("userData", JSON.stringify(userData))
-        localStorage.setItem('token', token)
-    }
-    deleteToken(token = "", userData={}){
-        store.commit('user/setAuthorization', {authorization:''})
-        store.commit('user/setUserData', {userData:{}} )
-        localStorage.removeItem("userData")
-        localStorage.removeItem("token")
-    }
+    // setToken(token="", userData={}){
+    //     store.commit('user/setAuthorization', {authorization:token})
+    //     store.commit('user/setUserData', {userData:userData})
+    //     localStorage.setItem("userData", JSON.stringify(userData))
+    //     localStorage.setItem('token', token)
+    // }
+    // deleteToken(token = "", userData={}){
+    //     store.commit('user/setAuthorization', {authorization:''})
+    //     store.commit('user/setUserData', {userData:{}} )
+    //     localStorage.removeItem("userData")
+    //     localStorage.removeItem("token")
+    // }
 }
 export default Service

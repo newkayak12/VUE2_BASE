@@ -27,7 +27,7 @@ export default{
     HeaderLayout,
     ContentsLayout,
     FooterLayout
-  },
+  }
 }
 </script>
 

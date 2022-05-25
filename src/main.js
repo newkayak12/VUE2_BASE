@@ -30,15 +30,16 @@ import UserSvc from '@/common/service/UserSvc'
 Vue.prototype.$UserSvc = UserSvc
 
 //Library
-import moment from 'moment'
+import dayjs from 'vue-dayjs'
 import vuelidate from 'vuelidate'
-import VueObserveVisibility from 'vue-observe-visibility'
+import {ObserveVisibility} from 'vue-observe-visibility'
+import _ from 'lodash'
 
 //Use
-Vue.use(moment)
+Vue.use(dayjs)
 Vue.use(vuelidate)
-Vue.use(VueObserveVisibility)
-
+Vue.directive('observe', ObserveVisibility)
+Vue.use(_)
 Vue.config.productionTip = false
 new Vue({
   router,

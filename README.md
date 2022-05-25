@@ -3,7 +3,7 @@
 ### - basic : Env.json
 ```json
 {
-  "PROJECT_NAME":"", // 프로젝트 이믊
+  "PROJECT_NAME":"", // 프로젝트 이름
   "FIRST_MAIN_THEME_COLOR":"red", // 메인 색
   "SECOND_MAIN_THEME_COLOR":"pink" // 서브 색상
 }
