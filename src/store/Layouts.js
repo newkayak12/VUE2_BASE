@@ -117,7 +117,6 @@ export default({
             state.modal.modalName = modalName
             state.modal.modalTitle = modalTitle
             state.modal.modalContent.data = modalContent.data
-            console.log("123")
         },
         closeModal(state){
             state.modal={
@@ -141,7 +140,6 @@ export default({
         },
         startSpinner(state, {isActive= false, spinnerColor='#000'}){
             state.spinner.isActive = isActive
-            console.log(spinnerColor)
             state.spinner.spinnerColor =spinnerColor
         },
         endSpinner(state){
@@ -240,7 +238,6 @@ export default({
             commit('closeModal')
         },
         startSpinner({commit},{spinnerColor = '#000'}){
-            console.log('dispatch', spinnerColor)
             commit('startSpinner',{isActive : true, spinnerColor : spinnerColor} )
         },
         endSpinner({commit}){
