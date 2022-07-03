@@ -22,8 +22,6 @@ class Service{
             const refresh = response.headers[ConstantCode.REFRESH_TOKEN_NAME]
             store.dispatch('user/setAuthorization', {auth, refresh})
             return response
-        }, (response)=>{
-            return -1
         })
     }
     get(path ='', param={}){
